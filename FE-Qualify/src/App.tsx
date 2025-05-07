@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <p>Developed (c) 2025 by Nathan Nav Moondi</p>
-      <p>Built using React, TypeScript, MongoDB and OpenAI</p>
+      <p>Built using React, TypeScript, Vercel and OpenAI</p>
     </footer>
   );
 };
