@@ -1,21 +1,17 @@
-import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.VITE_OPENAI_API_KEY, // Use environment variable for security
-  dangerouslyAllowBrowser: true
-});
 
 export const checkQualification = async (resume: string, jobDescription: string): Promise<string> => {
-
   
-  
-  try {
+    try {
 
     const callOpenRouter = async () => {
+
+      console.log('key', process.env.VITE_OPENAI_API_KEY);
+      
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          "Authorization": "Bearer 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",  // Replace with your actual API key
+          "Authorization": `Bearer ${process.env.VITE_OPENAI_API_KEY}`,  // Replace with your actual API key
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
