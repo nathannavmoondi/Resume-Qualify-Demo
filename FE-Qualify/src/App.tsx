@@ -57,7 +57,7 @@ const App: React.FC = () => {
         }
       }, 6);
     } catch (error) {
-      setResponse('There was an error processing your request. Please try again later.');
+      setResponse('There was an error processing your request. Please try again later!.');
       setIsTyping(false);
     }
   };
