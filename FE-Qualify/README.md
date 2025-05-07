@@ -52,3 +52,18 @@ export default tseslint.config({
   },
 })
 ```
+
+## Environment Setup
+
+This project requires an OpenAI API key to function. Follow these steps to set it up:
+
+1. Copy `.env.example` to a new file called `.env`
+2. Replace `your_api_key_here` with your actual OpenAI API key
+3. Never commit the `.env` file to version control
+
+```bash
+# Example .env file content
+REACT_APP_OPENAI_API_KEY=your_actual_api_key_here
+```
+
+Note: The `.env` file is ignored by git to protect sensitive information. Make sure to keep your API key private and never share it publicly.
