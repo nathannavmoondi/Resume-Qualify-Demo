@@ -34,29 +34,9 @@ export const checkQualification = async (resume: string, jobDescription: string)
     var ret = await callOpenRouter();
     return ret;
 
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o', // Fallback to gpt-3.5-turbo
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an AI assistant that evaluates resumes against job descriptions.'
-        },
-        {
-          role: 'user',
-          content: `Here is a resume and a job description. Please tell me if the person is qualified with a brief summary of positive aspects. The resume is: ${resume} and the job description is: ${jobDescription}`
-        }
-      ],
-      max_tokens: 150,
-    });
-
-    const messageContent = response.choices[0]?.message?.content;
-    return (messageContent ?? 'No response from AI.').trim();
+  
   } catch (error) {
     console.error('Error connecting to AI service:', error);
     return 'There was an error processing your request. Please try again later.';
   }
 };
-
-function useState(arg0: string): [any, any] {
-  throw new Error('Function not implemented.');
-}
