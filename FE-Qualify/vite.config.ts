@@ -8,6 +8,7 @@ dotenv.config();
 export default defineConfig({
   plugins: [react()],
   define: {
-    'process.env': process.env,
+    // Expose env variables
+    'process.env.VITE_OPENAI_API_KEY': JSON.stringify(process.env.VITE_OPENAI_API_KEY),
   },
 });

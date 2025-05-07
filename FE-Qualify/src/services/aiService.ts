@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY, // Use environment variable for security,
+  apiKey: process.env.VITE_OPENAI_API_KEY, // Use environment variable for security
   dangerouslyAllowBrowser: true
 });
 
