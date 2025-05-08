@@ -7,7 +7,7 @@ import { POOR_RESUME_DESCRIPTION, GOOD_RESUME_DESCRIPTION, EXCELLENT_RESUME_DESC
 const Footer: React.FC = () => {
   return (
     <footer className="footer">
-      <p>Developed (c) 2025 by Nathan Nav Moondi</p>
+      <p>Developed (c) 2025 by Nathan Nav Moondi and Happy Dappy Technologies</p>
       <p>Built using React, TypeScript, Vercel and OpenAI</p>
     </footer>
   );
