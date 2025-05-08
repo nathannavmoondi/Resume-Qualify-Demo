@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Graduate Cap Base -->
+  <path d="M32 8L4 24L32 40L60 24L32 8Z" fill="#2563eb"/>
+  
+  <!-- Cap Top -->
+  <path d="M20 28v12l12 6 12-6V28L32 34l-12-6z" fill="#1d4ed8"/>
+  
+  <!-- Tassel -->
+  <path d="M34 26v16l2-2 2 2V26" fill="#fbbf24"/>
+  
+  <!-- Student Face (simplified) -->
+  <circle cx="32" cy="40" r="8" fill="#fde68a"/>
+  
+  <!-- Cap Base Bottom Shadow -->
+  <path d="M20 40l12 6 12-6" fill="#1e40af" fill-opacity="0.5"/>
+</svg>
