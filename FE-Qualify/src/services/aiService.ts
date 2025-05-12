@@ -15,6 +15,8 @@ export const checkQualification = async (resume: string, jobDescription: string)
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
+
+          //add :floor to optimize
           model: "openai/gpt-3.5-turbo", // or another supported model
           messages: [
             { role: "system", content: "You are a helpful assistant." },
