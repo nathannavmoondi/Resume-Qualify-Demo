@@ -17,7 +17,7 @@ export const checkQualification = async (resume: string, jobDescription: string)
         body: JSON.stringify({
 
           //add :floor to optimize
-          model: "openai/gpt-3.5-turbo", // or another supported model
+          model: "google/gemini-2.0-flash-001:floor", // or another supported model
           messages: [
             { role: "system", content: "You are a helpful assistant." },
             { role: "user", content: `Here is a resume and a job description. Please tell me if the person is qualified with a brief summary. The resume is: ${resume} and the job description is: ${jobDescription}`}
