@@ -7,7 +7,7 @@ import { POOR_RESUME_DESCRIPTION, GOOD_RESUME_DESCRIPTION, EXCELLENT_RESUME_DESC
 const Footer: React.FC = () => {
   return (
     <footer className="footer">
-      <p>Developed (c) 2025 by Nathan Nav Moondi and Happy Dappy Technologies</p>
+      <p>Developed (c) 2025 by Nathan Nav Moondi</p>
       <p>Built using React, TypeScript, Vercel and OpenAI</p>
     </footer>
   );
@@ -30,32 +30,17 @@ const App: React.FC = () => {
 
     try {
       const aiResponse = await checkQualification(resume, jobDescription);
-      let currentText = '';
-      let index = 0;
-      
-      const typingInterval = setInterval(() => {
-        if (index < aiResponse.length) {
-          currentText += aiResponse[index];
-          setResponse(currentText);
-          index++;
-        } else {
-          clearInterval(typingInterval);
-          setIsTyping(false);
-          // Change button text to Done when processing is complete
-          setTimeout(() => {
-            const button = document.querySelector('.qualify-button') as HTMLButtonElement;
-            if (button) {
-              button.textContent = 'Done';
-              // Reset back to Qualify after 2 seconds
-              setTimeout(() => {
-                if (button && !isTyping) {
-                  button.textContent = 'Qualify';
-                }
-              }, 2000);
-            }
-          }, 100);
-        }
-      }, 6);
+      // Format response as HTML: paragraphs for each line, extra space after punctuation
+      let formattedHtml = aiResponse
+        .split(/\n+/)
+        .map(line => line.trim() ? `<p style="margin-bottom:1.2em; color: #fff;">${line.replace(/([.!?]) /g, '$1&nbsp;&nbsp;')}</p>` : '')
+        .join('');
+      // Replace headline color (green/teal) with cyan
+      formattedHtml = formattedHtml.replace(/color:\s*#0[aA][fF][9cC][8bB]?|color:\s*teal|color:\s*rgb\(0,\s*128,\s*128\)/gi, 'color:cyan');
+      // Also replace <h1>, <h2>, <h3> etc. to use cyan if present
+      formattedHtml = formattedHtml.replace(/<h([1-6])([^>]*)>/gi, '<h$1$2 style="color:cyan;">');
+      setResponse(formattedHtml);
+      setIsTyping(false);
     } catch (error) {
       setResponse('There was an error processing your request. Please try again later!.');
       setIsTyping(false);
@@ -111,7 +96,9 @@ const App: React.FC = () => {
         <button className="qualify-button" onClick={handleQualify} disabled={isTyping}>
           {isTyping ? 'Processing...' : 'Qualify'}
         </button>
-        {response && <div className="response-box">{response}</div>}
+        {response && (
+          <div className="response-box" dangerouslySetInnerHTML={{ __html: response }} />
+        )}
       </main>
     </div>
     <Footer />

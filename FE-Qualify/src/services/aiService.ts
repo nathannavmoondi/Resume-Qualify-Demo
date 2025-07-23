@@ -15,18 +15,25 @@ export const checkQualification = async (resume: string, jobDescription: string)
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-
-          //add :floor to optimize
-          model: "google/gemini-2.0-flash-001:floor", // or another supported model
+          model: "openai/gpt-3.5-turbo", // or another supported model
           messages: [
             { role: "system", content: "You are a helpful assistant." },
-            { role: "user", content: `Here is a resume and a job description. Please tell me if the person is qualified with a brief summary. The resume is: ${resume} and the job description is: ${jobDescription}`}
+            { role: "user", content: `Here is a resume and a job description. 
+              Please tell me if the person is qualified with a brief summary nothing more. 
+
+              Format it nicely. Make it html friendly and do not include html or body tags.
+              Use icons and emojis to make it visually appealing and colors.              
+              For important items, use <b> tags or icons instead of ** or * for emphasis. Do not use ** for bolding.
+              The resume is: ${resume} and the job description is: ${jobDescription}`}
           ]
         })
       });
     
       const data = await response.json();
-      return data.choices?.[0]?.message?.content;
+      let content = data.choices?.[0]?.message?.content ?? '';
+      // Remove any ```html or ``` markers from the response
+      content = content.replace(/```html|```/gi, '').trim();
+      return content;
     };
     
     var ret = await callOpenRouter();
